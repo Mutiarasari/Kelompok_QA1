@@ -14,10 +14,17 @@ public class ReqresApi {
     public static String GET_LIST_USER_INVALID = URL+"usersss";
     public static String GET_LIST_POSTS = URL+"posts";
     public static String GET_LIST_POST_INVALID = URL+"postssssss";
+    public static String GET_SINGLE_USER = URL+"users/{id}";
 
     @Step("Get list user")
     public void getListUser() {
         SerenityRest.given();
+    }
+
+    @Step("Get single user with id")
+    public void getSingleUser(String id) {
+        SerenityRest.given()
+                .pathParam("id", id);
     }
 
     @Step("Get list posts")

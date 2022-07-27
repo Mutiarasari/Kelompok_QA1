@@ -53,4 +53,20 @@ public class GetStepDef {
     public void sendRequestGetListPostsWithInvalidEndpoint() {
         SerenityRest.when().get(ReqresApi.GET_LIST_USER_INVALID);
     }
+
+    @Given("Get single user with id {string}")
+    public void getSingleUserWithId(String userId) {
+        reqresApi.getSingleUser(userId);
+    }
+
+    @When("Send request get single user")
+    public void sendRequestGetSingleUserWithValidId() {
+        SerenityRest.when().get(ReqresApi.GET_SINGLE_USER);
+    }
+
+    @And("Response body resource should contain name {string} and email {string}")
+    public void responseBodyResourceShouldContainNameAndEmail(String name, String email) {
+        SerenityRest.then().body(ReqresResponse.NAME, equalTo(name))
+                .body(ReqresResponse.EMAIL, equalTo(email));
+    }
 }
