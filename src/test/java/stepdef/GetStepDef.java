@@ -2,6 +2,7 @@ package stepdef;
 
 import api.ReqresApi;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.rest.SerenityRest;
@@ -35,6 +36,21 @@ public class GetStepDef {
 
     @When("Send request get list users with invalid endpoint")
     public void sendRequestGetListUsersWithInvalidEndpoint() {
+        SerenityRest.when().get(ReqresApi.GET_LIST_USER_INVALID);
+    }
+
+    @Given("Get list posts")
+    public void getListPosts() {
+        reqresApi.GetListPosts();
+    }
+
+    @When("Send request get list posts with valid endpoint")
+    public void sendRequestGetListPostsWithValidEndpoint() {
+        SerenityRest.when().get(ReqresApi.GET_LIST_POSTS);
+    }
+
+    @When("Send request get list posts with invalid endpoint")
+    public void sendRequestGetListPostsWithInvalidEndpoint() {
         SerenityRest.when().get(ReqresApi.GET_LIST_USER_INVALID);
     }
 }

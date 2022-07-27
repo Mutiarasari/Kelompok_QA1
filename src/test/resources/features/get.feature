@@ -10,3 +10,14 @@ Feature: Get method request
     Given Get list users
     When Send request get list users with invalid endpoint
     Then Status code should be 404
+
+    Scenario: Get list posts with valid endpoint
+      Given Get list posts
+      When Send request get list posts with valid endpoint
+      Then Status code should be 200
+
+      Scenario: Get list posts with invalid endpoint
+        Given Get list posts
+        When Send request get list posts with invalid endpoint
+        Then Status code should be 404
+

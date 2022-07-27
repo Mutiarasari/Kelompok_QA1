@@ -12,9 +12,17 @@ public class ReqresApi {
     // GET
     public static String GET_LIST_USER = URL+"users";
     public static String GET_LIST_USER_INVALID = URL+"usersss";
+    public static String GET_LIST_POSTS = URL+"posts";
+    public static String GET_LIST_POST_INVALID = URL+"postssssss";
 
     @Step("Get list user")
     public void getListUser() {
         SerenityRest.given();
     }
+
+    @Step("Get list posts")
+    public void GetListPosts(){
+        SerenityRest.given();
+    }
+
 }
