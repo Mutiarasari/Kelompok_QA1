@@ -43,6 +43,7 @@ public class ReqresApi {
     public static String DELETE_TODO = URL+"todos/{id}";
     public static String DELETE_POST = URL+"posts/{id}";
     public static String DELETE_COMMENT = URL+"comments/{id}";
+    public static String DELETE_USER = URL+"users/{id}";
 
     @Step("Get list user")
     public void getListUser() {
@@ -56,22 +57,22 @@ public class ReqresApi {
     }
 
     @Step("Get list posts")
-    public void GetListPosts(){
+    public void getListPosts(){
         SerenityRest.given();
     }
 
     @Step("Get single posts")
-    public void GetSinglePosts(String id){
+    public void getSinglePosts(String id){
         SerenityRest.given()
                 .pathParam("id",id);
     }
     @Step("Get list comments")
-    public void GetListComments(){
+    public void getListComments(){
         SerenityRest.given();
     }
 
     @Step("Get single comments")
-    public void setGetSingleComments(String id){
+    public void getSingleComments(String id){
         SerenityRest.given()
                 .pathParam("id",id);
     }
@@ -101,14 +102,14 @@ public class ReqresApi {
     }
 
     @Step("Post create posts")
-    public void PostCreatePosts(File json){
+    public void postCreatePosts(File json){
         SerenityRest.given()
                 .contentType(ContentType.JSON)
                 .body(json);
     }
 
     @Step("Post create comments")
-    public void PostCreateComments(File json){
+    public void postCreateComments(File json){
         SerenityRest.given()
                 .contentType(ContentType.JSON)
                 .body(json);
@@ -156,14 +157,22 @@ public class ReqresApi {
         SerenityRest.given()
                 .pathParam("id", id);
     }
+
     @Step("Delete Posts")
     public void deletePosts(String id){
         SerenityRest.given()
                 .pathParam("id",id);
     }
+
     @Step("Delete Comments")
     public void deleteComments(String id){
         SerenityRest.given()
                 .pathParam("id",id);
+    }
+
+    @Step("Delete user")
+    public void deleteUser(String id){
+        SerenityRest.given()
+                .pathParam("id", id);
     }
 }
