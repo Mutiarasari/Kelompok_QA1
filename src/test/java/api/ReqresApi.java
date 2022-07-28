@@ -35,6 +35,8 @@ public class ReqresApi {
 
     // PUT
     public static String PUT_UPDATE_USER = URL+"users/{id}";
+    public static String PUT_UPDATE_POSTS = URL+"posts/{id}";
+    public static String PUT_UPDATE_COMMENTS = URL+"comments/{id}";
     public static String PUT_UPDATE_TODO = URL+"todos/{id}";
 
     // DELETE
@@ -123,6 +125,20 @@ public class ReqresApi {
     public void putUpdateUser(String id, File json) {
         SerenityRest.given()
                 .pathParam("id", id)
+                .contentType(ContentType.JSON)
+                .body(json);
+    }
+    @Step("Put update posts")
+    public void putUpdatePosts(String id,File json){
+        SerenityRest.given()
+                .pathParam("id",id)
+                .contentType(ContentType.JSON)
+                .body(json);
+    }
+    @Step("Put update comments")
+    public void putUpdateComments(String id,File json){
+        SerenityRest.given()
+                .pathParam("id",id)
                 .contentType(ContentType.JSON)
                 .body(json);
     }
