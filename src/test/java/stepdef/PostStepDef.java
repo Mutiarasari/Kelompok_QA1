@@ -74,4 +74,28 @@ public class PostStepDef {
         File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PostCreateCommentsInvalid.json");
         reqresApi.PostCreatePosts(jsonFiles);
     }
+
+    @Given("Post create todo with valid json file")
+    public void postCreateTodoWithValidJsonFile() {
+        File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PostCreateTodo.json");
+        reqresApi.postCreateUser(jsonFiles);
+    }
+
+    @When("Send request post create todo")
+    public void sendRequestPostCreateTodo() {
+        SerenityRest.when().post(ReqresApi.POST_CREATE_TODO);
+    }
+
+    @And("Response body resource should contain title {string}, complete {string}, id {int}")
+    public void responseBodyResourceShouldContainTitleCompleteId(String title, String isComplete, int id) {
+        SerenityRest.then().body(ReqresResponse.SINGLE_TODO_TITLE, equalTo(title))
+                .body(ReqresResponse.SINGLE_TODO_COMPLETED, equalTo(Boolean.parseBoolean(isComplete)))
+                .body(ReqresResponse.ID, equalTo(id));
+    }
+
+    @Given("Post create todo with invalid json file")
+    public void postCreateTodoWithInvalidJsonFile() {
+        File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PostCreateTodoInvalid.json");
+        reqresApi.postCreateUser(jsonFiles);
+    }
 }

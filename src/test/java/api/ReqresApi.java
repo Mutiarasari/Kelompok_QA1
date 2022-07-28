@@ -31,6 +31,7 @@ public class ReqresApi {
     public static String POST_CREATE_USER = URL+"users";
     public static String POST_CREATE_POSTS = URL+"posts";
     public static String POST_CREATE_COMMENTS = URL+"comments";
+    public static String POST_CREATE_TODO = URL+"todos";
 
     // PUT
     public static String PUT_UPDATE_USER = URL+"users/{id}";
@@ -93,6 +94,7 @@ public class ReqresApi {
                 .contentType(ContentType.JSON)
                 .body(json);
     }
+
     @Step("Post create posts")
     public void PostCreatePosts(File json){
         SerenityRest.given()
@@ -102,6 +104,13 @@ public class ReqresApi {
 
     @Step("Post create comments")
     public void PostCreateComments(File json){
+        SerenityRest.given()
+                .contentType(ContentType.JSON)
+                .body(json);
+    }
+
+    @Step("Post create todo")
+    public void postCreateTodo(File json){
         SerenityRest.given()
                 .contentType(ContentType.JSON)
                 .body(json);
