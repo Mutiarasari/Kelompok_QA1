@@ -32,3 +32,20 @@ Feature: Get method request
     When Send request get list posts with invalid endpoint
     Then Status code should be 404
 
+  Scenario: Get list todos with valid endpoint
+    Given Get list todos with valid endpoint
+    When Send request get list todos
+    Then Status code should be 200
+    And Response body resource list should contain title "delectus aut autem", complete "false"
+
+  Scenario: Get single todo with valid id
+    Given Get single todo with valid id "1"
+    When Send request get single todo
+    Then Status code should be 200
+    And Response body resource single should contain title "delectus aut autem", complete "false"
+
+  Scenario: Get single todo with valid id
+    Given Get single todo with valid id "qfrvvrv"
+    When Send request get single todo
+    Then Status code should be 404
+
