@@ -18,11 +18,10 @@ public class ReqresApi {
     public static String GET_LIST_POSTS = URL+"posts";
     public static String GET_LIST_POST_INVALID = URL+"postssssss";
     public static String GET_SINGLE_USER = URL+"users/{id}";
-  
     public static String GET_SINGLE_POSTS = URL+"posts/{id}";
     public static String GET_LIST_COMMENTS = URL+"comments";
     public static String GET_LIST_COMMENTS_INVALID = URL+"commentssss";
-
+    public static String GET_SINGLE_COMMENTS = URL+"comments/{id}";
     public static String GET_LIST_TODOS = URL+"todos";
     public static String GET_SINGLE_TODOS = URL+"todos/{id}";
  
@@ -30,6 +29,7 @@ public class ReqresApi {
     // POST
     public static String POST_CREATE_USER = URL+"users";
     public static String POST_CREATE_POSTS = URL+"posts";
+    public static String POST_CREATE_COMMENTS = URL+"comments";
 
     // PUT
     public static String PUT_UPDATE_USER = URL+"users/{id}";
@@ -58,6 +58,11 @@ public class ReqresApi {
     public void GetListComments(){
         SerenityRest.given();
     }
+    @Step("Get single comments")
+    public void setGetSingleComments(String id){
+        SerenityRest.given()
+                .pathParam("id",id);
+    }
 
     @Step("Get list todos")
     public void getListTodos(){
@@ -78,6 +83,12 @@ public class ReqresApi {
     }
     @Step("Post create posts")
     public void PostCreatePosts(File json){
+        SerenityRest.given()
+                .contentType(ContentType.JSON)
+                .body(json);
+    }
+    @Step("Post create comments")
+    public void PostCreateComments(File json){
         SerenityRest.given()
                 .contentType(ContentType.JSON)
                 .body(json);

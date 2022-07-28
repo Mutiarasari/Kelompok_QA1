@@ -53,6 +53,16 @@ Feature: Get method request
     When Send Request get list comment
     Then Status code should be 404
 
+  Scenario: Get single comments with valid id
+    Given Get single comment with id "2"
+    When Send Request get single comment
+    Then Status code should be 200
+
+  Scenario: Get single comment with invalid id
+    Given Get single comment with invalid id "abababab"
+    When Send Request get single comment
+    Then Status code should be 404
+
   Scenario: Get list todos with valid endpoint
     Given Get list todos with valid endpoint
     When Send request get list todos

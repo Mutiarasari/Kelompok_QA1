@@ -20,3 +20,13 @@ Feature: Post method request
     Given Post create posts with invalid json file
     When Send request post create posts
     Then Status code should be 500
+
+  Scenario: Post create comment with valid json file
+    Given Post create comment with valid json file
+    When Send request post create comments
+    Then Status code should be 201
+
+  Scenario: Post create comment with invalid json file
+    Given Post create comment with invalid json file
+    When Send request post create comments
+    Then Status code should be 500

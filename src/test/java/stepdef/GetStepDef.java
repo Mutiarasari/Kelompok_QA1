@@ -126,4 +126,18 @@ public class GetStepDef {
                 .body(ReqresResponse.SINGLE_TODO_COMPLETED, equalTo(Boolean.parseBoolean(isComplete)));
 
     }
+
+    @Given("Get single comment with id {string}")
+    public void getSingleCommentWithId(String parameter) {
+        reqresApi.setGetSingleComments(parameter);
+    }
+
+    @When("Send Request get single comment")
+    public void sendRequestGetSingleComment() {
+        SerenityRest.when().get(ReqresApi.GET_SINGLE_COMMENTS);
+    }
+
+    @Given("Get single comment with invalid id {string}")
+    public void getSingleCommentWithInvalidId(String param1) { reqresApi.setGetSingleComments(param1);
+    }
 }
