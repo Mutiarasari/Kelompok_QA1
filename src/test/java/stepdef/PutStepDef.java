@@ -69,8 +69,9 @@ public class PutStepDef {
 
     @Given("Put update Comments with invalid json file and id {string}")
     public void putUpdateCommentsWithInvalidJsonFileAndId(String ids) {
-        File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PutUpdateCommentInvalid.json");
+        File jsonFiles = new File(ReqresApi.DIR + "/src/test/resources/json/requestbody/PutUpdateCommentInvalid.json");
         reqresApi.putUpdateComments(ids, jsonFiles);
+    }
 
     @Given("Put update todo with valid json file and id {string}")
     public void putUpdateTodoWithValidJsonFileAndId(String id) {
