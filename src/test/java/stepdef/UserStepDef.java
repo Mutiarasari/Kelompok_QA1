@@ -4,6 +4,7 @@ import api.ReqresApi;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
 import response.ReqresResponse;
@@ -121,4 +122,37 @@ public class UserStepDef {
         reqresApi.putUpdateUser(id, jsonFiles);
     }
 
+    @And("Get single user assert json validation")
+    public void getSingleResourceAssertJsonValidation() {
+        File jsonFile = new File(ReqresApi.JSON_FILE+"/validation/GetSingleUserJsonValidation.json");
+        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+    }
+
+    @And("Post create user assert json validation")
+    public void postCreateUserAssertJsonValidation() {
+        File jsonFile = new File(ReqresApi.JSON_FILE+"/validation/PostCreateUserJsonValidation.json");
+        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+    }
+
+    @And("Put update user assert json validation")
+    public void putUpdateUserAssertJsonValidation() {
+        File jsonFile = new File(ReqresApi.JSON_FILE+"/validation/PutUpdateUserJsonValidation.json");
+        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+    }
+
+    @Given("Delete user with valid id {string}")
+    public void deleteUserWithValidId(String id) {
+        reqresApi.deleteUser(id);
+    }
+
+    @Given("Delete user with invalid id {string}")
+    public void deleteUserWithInvalidId(String id) {
+        reqresApi.deleteUser(id);
+    }
+
+    @And("Post create posts assert json validation")
+    public void postCreatePostsAssertJsonValidation() {
+        File jsonFile = new File(ReqresApi.JSON_FILE+"/validation/PutUpdatePostJsonValidation.json");
+        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+    }
 }

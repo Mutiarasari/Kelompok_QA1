@@ -1,9 +1,11 @@
 package stepdef;
 
 import api.ReqresApi;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
 
@@ -21,7 +23,7 @@ public class CommentsStepDef {
 
     @When("Send Request get list comment")
     public void sendRequestGetListComment() {
-        SerenityRest.when().get(ReqresApi.GET_LIST_COMMENTS_INVALID);
+        SerenityRest.when().get(ReqresApi.GET_LIST_COMMENTS);
     }
 
     @Then("Status code should be {int}")
@@ -91,4 +93,21 @@ public class CommentsStepDef {
         reqresApi.deleteComments(par1);
     }
 
+    @And("Get single comment assert json validation")
+    public void getSingleCommentAssertJsonValidation() {
+        File jsonFile = new File(ReqresApi.JSON_FILE+"/validation/GetSingleCommentJsonValidation.json");
+        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+    }
+
+    @And("Post create comment assert json validation")
+    public void postCreateCommentAssertJsonValidation() {
+        File jsonFile = new File(ReqresApi.JSON_FILE+"/validation/PostCreateCommentJsonValidation.json");
+        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+    }
+
+    @And("Put update comment assert json validation")
+    public void putUpdateCommentAssertJsonValidation() {
+        File jsonFile = new File(ReqresApi.JSON_FILE+"/validation/PutUpdateCommentJsonValidation.json");
+        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+    }
 }

@@ -4,6 +4,7 @@ import api.ReqresApi;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
 import response.ReqresResponse;
@@ -43,7 +44,7 @@ public class TodoStepDef {
         SerenityRest.when().get(ReqresApi.GET_SINGLE_TODOS);
     }
 
-    @And("Response body resource single should contain title {string}, complete {string}")
+    @And("Response body single should contain title {string}, complete {string}")
     public void responseBodyResourceSingleShouldContainTitleComplete(String title, String isComplete) {
         SerenityRest.then().body(ReqresResponse.SINGLE_TODO_TITLE, equalTo(title))
                 .body(ReqresResponse.SINGLE_TODO_COMPLETED, equalTo(Boolean.parseBoolean(isComplete)));
@@ -71,7 +72,7 @@ public class TodoStepDef {
         SerenityRest.when().post(ReqresApi.POST_CREATE_TODO);
     }
 
-    @And("Response body resource should contain title {string}, complete {string}, id {int}")
+    @And("Response body should contain title {string}, complete {string}, id {int}")
     public void responseBodyResourceShouldContainTitleCompleteId(String title, String isComplete, int id) {
         SerenityRest.then().body(ReqresResponse.SINGLE_TODO_TITLE, equalTo(title))
                 .body(ReqresResponse.SINGLE_TODO_COMPLETED, equalTo(Boolean.parseBoolean(isComplete)))
@@ -91,10 +92,8 @@ public class TodoStepDef {
 
     @When("Send request delete user")
     public void sendRequestDeleteUser() {
-        SerenityRest.when().delete(ReqresApi.DELETE_TODO);
+        SerenityRest.when().delete(ReqresApi.DELETE_USER);
     }
-
-
 
     @Given("Put update todo with valid json file and id {string}")
     public void putUpdateTodoWithValidJsonFileAndId(String id) {
@@ -124,4 +123,26 @@ public class TodoStepDef {
 
     }
 
+    @And("Get single todo assert json validation")
+    public void getSingleTodoAssertJsonValidation() {
+        File jsonFile = new File(ReqresApi.JSON_FILE+"/validation/GetSingleTodoJsonValidation.json");
+        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+    }
+
+    @Given("Get single todo with invalid id {string}")
+    public void getSingleTodoWithInvalidId(String id) {
+        reqresApi.getSingleTodos(id);
+    }
+
+    @And("Post create todo assert json validation")
+    public void postCreateTodoAssertJsonValidation() {
+        File jsonFile = new File(ReqresApi.JSON_FILE+"/validation/PostCreateTodoJsonValidation.json");
+        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+    }
+
+    @And("Put update todo assert json validation")
+    public void putUpdateTodoAssertJsonValidation() {
+        File jsonFile = new File(ReqresApi.JSON_FILE+"/validation/PutUpdateTodoJsonValidation.json");
+        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+    }
 }

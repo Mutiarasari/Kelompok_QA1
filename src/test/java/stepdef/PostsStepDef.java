@@ -1,8 +1,10 @@
 package stepdef;
 
 import api.ReqresApi;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Steps;
 
@@ -72,4 +74,15 @@ public class PostsStepDef {
         reqresApi.deleteComments(parameter);
     }
 
+    @And("Get single posts assert json validation")
+    public void getSinglePostsAssertJsonValidation() {
+        File jsonFile = new File(ReqresApi.JSON_FILE+"/validation/GetSinglePostJsonValidation.json");
+        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+    }
+
+    @And("Post update posts assert json validation")
+    public void postUpdatePostsAssertJsonValidation() {
+        File jsonFile = new File(ReqresApi.JSON_FILE+"/validation/PutUpdatePostJsonValidation.json");
+        SerenityRest.then().assertThat().body(JsonSchemaValidator.matchesJsonSchema(jsonFile));
+    }
 }

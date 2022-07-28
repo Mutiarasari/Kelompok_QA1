@@ -43,6 +43,7 @@ public class ReqresApi {
     public static String DELETE_TODO = URL+"todos/{id}";
     public static String DELETE_POST = URL+"posts/{id}";
     public static String DELETE_COMMENT = URL+"comments/{id}";
+    public static String DELETE_USER = URL+"users/{id}";
 
     @Step("Get list user")
     public void getListUser() {
@@ -167,5 +168,11 @@ public class ReqresApi {
     public void deleteComments(String id){
         SerenityRest.given()
                 .pathParam("id",id);
+    }
+
+    @Step("Delete user")
+    public void deleteUser(String id){
+        SerenityRest.given()
+                .pathParam("id", id);
     }
 }
