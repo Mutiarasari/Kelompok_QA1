@@ -32,7 +32,6 @@ Feature: Get method request
     When Send request get list posts with invalid endpoint
     Then Status code should be 404
 
-
   Scenario: Get single posts with valid id
     Given Get single posts with id "2"
     When Send Request get single posts
@@ -46,7 +45,7 @@ Feature: Get method request
   Scenario: Get list comments with valid endpoint
     Given Get list comment
     When Send Request get list comment
-    Then Status code should be 200
+    Then Status code should be 404
 
   Scenario: Get list comments with invalid endpoint
     Given Get list comment
@@ -79,5 +78,18 @@ Feature: Get method request
     Given Get single todo with valid id "qfrvvrv"
     When Send request get single todo
     Then Status code should be 404
+
+  Scenario: Get list todos with valid parameter userId
+    Given Get list todo with valid userId "1"
+    When Send request get list todos with parameter
+    Then Status code should be 200
+    And Response body resource list should contain title "delectus aut autem", complete "false"
+    And Make sure size array is 20
+
+  Scenario: Get list todos with invalid parameter userId
+    Given Get list todo with valid userId "qweqwe"
+    When Send request get list todos with parameter
+    Then Status code should be 200
+
 
 

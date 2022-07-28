@@ -23,6 +23,7 @@ public class ReqresApi {
     public static String GET_LIST_COMMENTS_INVALID = URL+"commentssss";
     public static String GET_SINGLE_COMMENTS = URL+"comments/{id}";
     public static String GET_LIST_TODOS = URL+"todos";
+    public static String GET_LIST_TODOS_WITH_PARAMETER_USERID = URL+"todos?userId={id}";
     public static String GET_SINGLE_TODOS = URL+"todos/{id}";
  
 
@@ -49,6 +50,7 @@ public class ReqresApi {
     public void GetListPosts(){
         SerenityRest.given();
     }
+
     @Step("Get single posts")
     public void GetSinglePosts(String id){
         SerenityRest.given()
@@ -58,6 +60,7 @@ public class ReqresApi {
     public void GetListComments(){
         SerenityRest.given();
     }
+
     @Step("Get single comments")
     public void setGetSingleComments(String id){
         SerenityRest.given()
@@ -67,6 +70,12 @@ public class ReqresApi {
     @Step("Get list todos")
     public void getListTodos(){
         SerenityRest.given();
+    }
+
+    @Step("Get list todos with parameter userId")
+    public void getListTodosWithParameterUserid(String userId){
+        SerenityRest.given()
+                .pathParam("id", userId);
     }
 
     @Step("Get single todos")

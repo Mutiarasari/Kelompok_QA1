@@ -94,6 +94,7 @@ public class GetStepDef {
     public void sendRequestGetListComment() {
         SerenityRest.when().get(ReqresApi.GET_LIST_COMMENTS_INVALID);
     }
+
     @Given("Get list todos with valid endpoint")
     public void getListTodosWithValidEndpoint() {
         reqresApi.getListTodos();
@@ -138,6 +139,17 @@ public class GetStepDef {
     }
 
     @Given("Get single comment with invalid id {string}")
-    public void getSingleCommentWithInvalidId(String param1) { reqresApi.setGetSingleComments(param1);
+    public void getSingleCommentWithInvalidId(String param1) {
+        reqresApi.setGetSingleComments(param1);
+    }
+
+    @Given("Get list todo with valid userId {string}")
+    public void getListTodoWithValidUserId(String userId) {
+        reqresApi.getListTodosWithParameterUserid(userId);
+    }
+
+    @When("Send request get list todos with parameter")
+    public void sendRequestGetListTodosWithParameter() {
+        SerenityRest.when().get(ReqresApi.GET_LIST_TODOS_WITH_PARAMETER_USERID);
     }
 }
