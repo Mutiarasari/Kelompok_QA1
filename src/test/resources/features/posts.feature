@@ -1,4 +1,4 @@
-Feature: API for endpoint /posts
+Feature: endpoint /posts
 
   Scenario: Get list posts with valid endpoint
     Given Get list posts

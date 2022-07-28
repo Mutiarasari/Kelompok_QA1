@@ -1,4 +1,4 @@
-Feature: API for endpoint /users
+Feature: /users
 
   Scenario: Get list user with valid endpoint
     Given Get list users

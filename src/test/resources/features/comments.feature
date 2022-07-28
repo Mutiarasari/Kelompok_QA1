@@ -1,4 +1,4 @@
-Feature: API for endpoint /comments
+Feature: endpoint /comments
 
   Scenario: Get list comments with valid endpoint
     Given Get list comment

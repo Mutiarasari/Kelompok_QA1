@@ -1,4 +1,4 @@
-Feature: API for endpoint /todos
+Feature: endpoint /todos
 
   Scenario: Get list todos with valid endpoint
     Given Get list todos with valid endpoint
