@@ -72,6 +72,28 @@ public class GetStepDef {
                 .body(ReqresResponse.EMAIL, equalTo(email));
     }
 
+
+    @Given("Get single posts with id {string}")
+    public void getSinglePostsWithId(String id) { reqresApi.GetSinglePosts(id);
+    }
+
+    @When("Send Request get single posts")
+    public void sendRequestGetSinglePosts() { SerenityRest.when().get(ReqresApi.GET_SINGLE_POSTS);
+    }
+
+    @Given("Get single posts with invalid id {string}")
+    public void getSinglePostsWithInvalidId(String param) { reqresApi.getSingleUser(param);
+    }
+
+    @Given("Get list comment")
+    public void getListComment() {
+        reqresApi.GetListComments();
+    }
+
+    @When("Send Request get list comment")
+    public void sendRequestGetListComment() {
+        SerenityRest.when().get(ReqresApi.GET_LIST_COMMENTS_INVALID);
+
     @Given("Get list todos with valid endpoint")
     public void getListTodosWithValidEndpoint() {
         reqresApi.getListTodos();
@@ -102,5 +124,6 @@ public class GetStepDef {
     public void responseBodyResourceSingleShouldContainTitleComplete(String title, String isComplete) {
         SerenityRest.then().body(ReqresResponse.SINGLE_TODO_TITLE, equalTo(title))
                 .body(ReqresResponse.SINGLE_TODO_COMPLETED, equalTo(Boolean.parseBoolean(isComplete)));
+
     }
 }
