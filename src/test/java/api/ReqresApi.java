@@ -18,6 +18,9 @@ public class ReqresApi {
     public static String GET_LIST_POSTS = URL+"posts";
     public static String GET_LIST_POST_INVALID = URL+"postssssss";
     public static String GET_SINGLE_USER = URL+"users/{id}";
+    public static String GET_SINGLE_POSTS = URL+"posts/{id}";
+    public static String GET_LIST_COMMENTS = URL+"comments";
+    public static String GET_LIST_COMMENTS_INVALID = URL+"commentssss";
 
     // POST
     public static String POST_CREATE_USER = URL+"users";
@@ -35,6 +38,15 @@ public class ReqresApi {
 
     @Step("Get list posts")
     public void GetListPosts(){
+        SerenityRest.given();
+    }
+    @Step("Get single posts")
+    public void GetSinglePosts(String id){
+        SerenityRest.given()
+                .pathParam("id",id);
+    }
+    @Step("Get list comments")
+    public void GetListComments(){
         SerenityRest.given();
     }
 

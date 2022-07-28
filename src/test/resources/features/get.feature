@@ -32,3 +32,22 @@ Feature: Get method request
     When Send request get list posts with invalid endpoint
     Then Status code should be 404
 
+  Scenario: Get single posts with valid id
+    Given Get single posts with id "2"
+    When Send Request get single posts
+    Then Status code should be 200
+
+  Scenario: Get single post with invalid id
+    Given Get single posts with invalid id "aba"
+    When Send Request get single posts
+    Then Status code should be 404
+
+  Scenario: Get list comments with valid endpoint
+    Given Get list comment
+    When Send Request get list comment
+    Then Status code should be 200
+
+  Scenario: Get list comments with invalid endpoint
+    Given Get list comment
+    When Send Request get list comment
+    Then Status code should be 404
