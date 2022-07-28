@@ -40,4 +40,31 @@ public class PutStepDef {
         File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PutUpdateUserInvalid.json");
         reqresApi.putUpdateUser(id, jsonFiles);
     }
+
+    @Given("Put update todo with valid json file and id {string}")
+    public void putUpdateTodoWithValidJsonFileAndId(String id) {
+        File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PutUpdateTodo.json");
+        reqresApi.putUpdateTodo(id, jsonFiles);
+    }
+
+    @When("Send request put update todo")
+    public void sendRequestPutUpdateTodo() {
+        SerenityRest.when().put(ReqresApi.PUT_UPDATE_TODO);
+    }
+
+    @And("Response body resource should contain title {string}, completed {string}")
+    public void responseBodyResourceShouldContainTitleCompleted(String title, String isCompleted) {
+        SerenityRest.then().body(ReqresResponse.SINGLE_TODO_TITLE, equalTo(title))
+                .body(ReqresResponse.SINGLE_TODO_COMPLETED, equalTo(Boolean.parseBoolean(isCompleted)));
+    }
+
+    @Given("Put update todo with invalid json file and id {string}")
+    public void putUpdateTodoWithInvalidJsonFileAndId(String id) {
+        File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PutUpdateTodoInvalid.json");
+        reqresApi.putUpdateTodo(id, jsonFiles);
+    }
+
+    @Given("Put update todo with invalid id {string}")
+    public void putUpdateTodoWithInvalidId(String id) {
+    }
 }
