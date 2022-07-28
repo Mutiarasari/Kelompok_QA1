@@ -71,4 +71,36 @@ public class GetStepDef {
         SerenityRest.then().body(ReqresResponse.NAME, equalTo(name))
                 .body(ReqresResponse.EMAIL, equalTo(email));
     }
+
+    @Given("Get list todos with valid endpoint")
+    public void getListTodosWithValidEndpoint() {
+        reqresApi.getListTodos();
+    }
+
+    @When("Send request get list todos")
+    public void sendRequestGetListTodos() {
+        SerenityRest.when().get(ReqresApi.GET_LIST_TODOS);
+    }
+
+    @And("Response body resource list should contain title {string}, complete {string}")
+    public void responseBodyResourceShouldContainTitleComplete(String title, String isComplete) {
+        SerenityRest.then().body(ReqresResponse.LIST_TODO_TITLE, equalTo(title))
+                .body(ReqresResponse.LIST_TODO_COMPLETED, equalTo(Boolean.parseBoolean(isComplete)));
+    }
+
+    @Given("Get single todo with valid id {string}")
+    public void getSingleTodoWithValidId(String userId) {
+        reqresApi.getSingleUser(userId);
+    }
+
+    @When("Send request get single todo")
+    public void sendRequestGetSingleTodo() {
+        SerenityRest.when().get(ReqresApi.GET_SINGLE_TODOS);
+    }
+
+    @And("Response body resource single should contain title {string}, complete {string}")
+    public void responseBodyResourceSingleShouldContainTitleComplete(String title, String isComplete) {
+        SerenityRest.then().body(ReqresResponse.SINGLE_TODO_TITLE, equalTo(title))
+                .body(ReqresResponse.SINGLE_TODO_COMPLETED, equalTo(Boolean.parseBoolean(isComplete)));
+    }
 }
