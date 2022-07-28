@@ -40,4 +40,36 @@ public class PutStepDef {
         File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PutUpdateUserInvalid.json");
         reqresApi.putUpdateUser(id, jsonFiles);
     }
+
+    @Given("Put update posts with valid json file and id {string}")
+    public void putUpdatePostsWithValidJsonFileAndId(String id) {
+        File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PutUpdatePosts.json");
+        reqresApi.putUpdatePosts(id, jsonFiles);
+    }
+
+    @When("Send request put update posts")
+    public void sendRequestPutUpdatePosts() { SerenityRest.when().put(ReqresApi.PUT_UPDATE_POSTS);
+    }
+
+    @Given("Put update posts with invalid json file and id {string}")
+    public void putUpdatePostsWithInvalidJsonFileAndId(String ID) {
+        File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PutUpdatePostsInvalid.json");
+        reqresApi.putUpdatePosts(ID, jsonFiles);
+    }
+
+    @Given("Put update Comments with valid json file and id {string}")
+    public void putUpdateCommentsWithValidJsonFileAndId(String par) {
+        File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PutUpdateComment.json");
+        reqresApi.putUpdateComments(par, jsonFiles);
+    }
+
+    @When("Send request put update Comments")
+    public void sendRequestPutUpdateComments() { SerenityRest.when().put(ReqresApi.PUT_UPDATE_COMMENTS);
+    }
+
+    @Given("Put update Comments with invalid json file and id {string}")
+    public void putUpdateCommentsWithInvalidJsonFileAndId(String ids) {
+        File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PutUpdateCommentInvalid.json");
+        reqresApi.putUpdateComments(ids, jsonFiles);
+    }
 }

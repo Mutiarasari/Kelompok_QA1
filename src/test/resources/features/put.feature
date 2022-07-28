@@ -25,3 +25,36 @@ Feature: Put method request
       |id         |
       |qweqwe     |
 
+  Scenario Outline: Put Posts user with valid id
+    Given Put update posts with valid json file and id "<id>"
+    When Send request put update posts
+    Then Status code should be 200
+    Examples:
+      | id |
+      | 2  |
+
+  Scenario Outline: Put Posts user with invalid id
+    Given Put update posts with invalid json file and id "<id>"
+    When Send request put update posts
+    Then Status code should be 400
+    Examples:
+      | id |
+      | 2  |
+
+  Scenario Outline: Put Comments user with valid id
+    Given Put update Comments with valid json file and id "<id>"
+    When Send request put update Comments
+    Then Status code should be 200
+    Examples:
+      | id |
+      | 2  |
+
+  Scenario Outline: Put Posts Comments with invalid id
+    Given Put update Comments with invalid json file and id "<id>"
+    When Send request put update Comments
+    Then Status code should be 400
+    Examples:
+      | id |
+      | 2  |
+
+
