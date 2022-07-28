@@ -29,6 +29,7 @@ public class ReqresApi {
 
     // POST
     public static String POST_CREATE_USER = URL+"users";
+    public static String POST_CREATE_POSTS = URL+"posts";
 
     // PUT
     public static String PUT_UPDATE_USER = URL+"users/{id}";
@@ -71,6 +72,12 @@ public class ReqresApi {
 
     @Step("Post create user")
     public void postCreateUser(File json) {
+        SerenityRest.given()
+                .contentType(ContentType.JSON)
+                .body(json);
+    }
+    @Step("Post create posts")
+    public void PostCreatePosts(File json){
         SerenityRest.given()
                 .contentType(ContentType.JSON)
                 .body(json);

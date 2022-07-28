@@ -93,7 +93,7 @@ public class GetStepDef {
     @When("Send Request get list comment")
     public void sendRequestGetListComment() {
         SerenityRest.when().get(ReqresApi.GET_LIST_COMMENTS_INVALID);
-
+    }
     @Given("Get list todos with valid endpoint")
     public void getListTodosWithValidEndpoint() {
         reqresApi.getListTodos();

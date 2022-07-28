@@ -40,4 +40,21 @@ public class PostStepDef {
         File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PostCreateUserInvalid.json");
         reqresApi.postCreateUser(jsonFiles);
     }
+
+    @Given("Post create posts with valid json file")
+    public void postCreatePostsWithvalidJsonFile() {
+        File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PostCreatePosts.json");
+        reqresApi.PostCreatePosts(jsonFiles);
+    }
+
+    @When("Send request post create posts")
+    public void sendRequestPostCreatePosts() {
+        SerenityRest.when().post(ReqresApi.POST_CREATE_POSTS);
+    }
+
+    @Given("Post create posts with invalid json file")
+    public void postCreatePostsWithInvalidJsonFile() {
+        File jsonFiles = new File(ReqresApi.DIR+"/src/test/resources/json/requestbody/PostCreatePostsInvalid.json");
+        reqresApi.PostCreatePosts(jsonFiles);
+    }
 }
