@@ -31,11 +31,13 @@ public class ReqresApi {
     public static String POST_CREATE_USER = URL+"users";
     public static String POST_CREATE_POSTS = URL+"posts";
     public static String POST_CREATE_COMMENTS = URL+"comments";
+    public static String POST_CREATE_TODO = URL+"todos";
 
     // PUT
     public static String PUT_UPDATE_USER = URL+"users/{id}";
     public static String PUT_UPDATE_POSTS = URL+"posts/{id}";
     public static String PUT_UPDATE_COMMENTS = URL+"comments/{id}";
+    public static String PUT_UPDATE_TODO = URL+"todos/{id}";
 
     // DELETE
     public static String DELETE_TODO = URL+"todos/{id}";
@@ -97,6 +99,7 @@ public class ReqresApi {
                 .contentType(ContentType.JSON)
                 .body(json);
     }
+
     @Step("Post create posts")
     public void PostCreatePosts(File json){
         SerenityRest.given()
@@ -106,6 +109,13 @@ public class ReqresApi {
 
     @Step("Post create comments")
     public void PostCreateComments(File json){
+        SerenityRest.given()
+                .contentType(ContentType.JSON)
+                .body(json);
+    }
+
+    @Step("Post create todo")
+    public void postCreateTodo(File json){
         SerenityRest.given()
                 .contentType(ContentType.JSON)
                 .body(json);
@@ -129,6 +139,14 @@ public class ReqresApi {
     public void putUpdateComments(String id,File json){
         SerenityRest.given()
                 .pathParam("id",id)
+                .contentType(ContentType.JSON)
+                .body(json);
+    }
+
+    @Step("Put update todo")
+    public void putUpdateTodo(String id, File json) {
+        SerenityRest.given()
+                .pathParam("id", id)
                 .contentType(ContentType.JSON)
                 .body(json);
     }

@@ -30,3 +30,14 @@ Feature: Post method request
     Given Post create comment with invalid json file
     When Send request post create comments
     Then Status code should be 500
+
+  Scenario: Post create todo with valid json file
+    Given Post create todo with valid json file
+    When Send request post create todo
+    Then Status code should be 201
+    And Response body resource should contain title "Marvel", complete "false", id 201
+
+  Scenario: Post create todo with valid json file
+    Given Post create todo with invalid json file
+    When Send request post create todo
+    Then Status code should be 500
