@@ -6,11 +6,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.rest.SerenityRest;
+import net.thucydides.core.annotations.Steps;
 import response.ReqresResponse;
 import static org.hamcrest.Matchers.equalTo;
 
 public class GetStepDef {
 
+    @Steps
     ReqresApi reqresApi = new ReqresApi();
 
     // GET LIST USER

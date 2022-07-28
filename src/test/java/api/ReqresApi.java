@@ -1,7 +1,10 @@
 package api;
 
+import io.restassured.http.ContentType;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
+
+import java.io.File;
 
 public class ReqresApi {
 
@@ -15,6 +18,9 @@ public class ReqresApi {
     public static String GET_LIST_POSTS = URL+"posts";
     public static String GET_LIST_POST_INVALID = URL+"postssssss";
     public static String GET_SINGLE_USER = URL+"users/{id}";
+
+    // POST
+    public static String POST_CREATE_USER = URL+"users";
 
     @Step("Get list user")
     public void getListUser() {
@@ -32,4 +38,10 @@ public class ReqresApi {
         SerenityRest.given();
     }
 
+    @Step("Post create user")
+    public void postCreateUser(File json) {
+        SerenityRest.given()
+                .contentType(ContentType.JSON)
+                .body(json);
+    }
 }
