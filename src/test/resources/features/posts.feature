@@ -39,7 +39,7 @@ Feature: endpoint /posts
   Scenario: Post create posts with invalid json file
     Given Post create posts with invalid json file
     When Send request post create posts
-    Then Status code should be 500
+    Then Status code should be 400
 
   Scenario Outline: Put update post with valid id
     Given Put update posts with valid json file and id "<id>"
@@ -54,7 +54,7 @@ Feature: endpoint /posts
   Scenario Outline: Put update post with invalid id
     Given Put update posts with invalid json file and id "<id>"
     When Send request put update posts
-    Then Status code should be 500
+    Then Status code should be 400
     Examples:
       | id |
       | 2  |
