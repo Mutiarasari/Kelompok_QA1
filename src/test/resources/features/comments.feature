@@ -1,13 +1,13 @@
 Feature: endpoint /comments
 
-  @smoke
+  @tiara
   Scenario: Get list comments with valid endpoint
     Given Get list comment
     When Send Request get list comment
     Then Status code should be 200
     And Make sure size array is 500
 
-  @smoke
+  @tiara
   Scenario Outline: Get single comments with valid id
     Given Get single comment with id "<id>"
     When Send Request get single comment
@@ -18,23 +18,26 @@ Feature: endpoint /comments
     |1    |
     |2    |
 
+  @tiara
   Scenario: Get single comment with invalid id
     Given Get single comment with invalid id "qweqwe"
     When Send Request get single comment
     Then Status code should be 404
 
-  @smoke
+  @tiara
   Scenario: Post create comment with valid json file
     Given Post create comment with valid json file
     When Send request post create comments
     Then Status code should be 201
     And Post create comment assert json validation
 
+  @tiara
   Scenario: Post create comment with invalid json file
     Given Post create comment with invalid json file
     When Send request post create comments
     Then Status code should be 400
 
+  @tiara
   Scenario Outline: Put Comments user with valid id
     Given Put update Comments with valid json file and id "<id>"
     When Send request put update Comments
@@ -45,7 +48,7 @@ Feature: endpoint /comments
       | 1  |
       | 2  |
 
-  @smoke
+  @tiara
   Scenario Outline: Put Posts Comments with invalid id
     Given Put update Comments with invalid json file and id "<id>"
     When Send request put update Comments
@@ -54,7 +57,7 @@ Feature: endpoint /comments
       | id |
       | 1  |
 
-  @smoke
+  @tiara
   Scenario Outline: Delete Comment with valid id
     Given Delete Comment with valid id "<id>"
     When Send request delete Comment
@@ -65,6 +68,7 @@ Feature: endpoint /comments
     |2    |
 
 # actual status code is 200
+  @tiara
   Scenario: Delete Comment with invalid id
     Given Delete Comment with invalid id "abababab"
     When Send request delete Comment
