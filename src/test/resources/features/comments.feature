@@ -33,7 +33,7 @@ Feature: endpoint /comments
   Scenario: Post create comment with invalid json file
     Given Post create comment with invalid json file
     When Send request post create comments
-    Then Status code should be 500
+    Then Status code should be 400
 
   Scenario Outline: Put Comments user with valid id
     Given Put update Comments with valid json file and id "<id>"
@@ -49,7 +49,7 @@ Feature: endpoint /comments
   Scenario Outline: Put Posts Comments with invalid id
     Given Put update Comments with invalid json file and id "<id>"
     When Send request put update Comments
-    Then Status code should be 500
+    Then Status code should be 400
     Examples:
       | id |
       | 1  |

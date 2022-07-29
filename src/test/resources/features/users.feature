@@ -40,7 +40,7 @@ Feature: endpoint /users
   Scenario: Post create user with invalid json file
     Given Post create user with invalid json file
     When Send request post create user
-    Then Status code should be 500
+    Then Status code should be 400
 
   @smoke
   Scenario Outline: Put update user with valid json file
@@ -56,7 +56,7 @@ Feature: endpoint /users
   Scenario Outline: Put update user with invalid json file
     Given Put update user with invalid json file and id "<id>"
     When Send request put update user
-    Then Status code should be 500
+    Then Status code should be 400
     Examples:
       |id   |
       |1    |
@@ -65,7 +65,7 @@ Feature: endpoint /users
   Scenario Outline: Put update user with invalid id
     Given Put update user with valid json file and id "<id>"
     When Send request put update user
-    Then Status code should be 500
+    Then Status code should be 404
     Examples:
       |id         |
       |qweqwe     |

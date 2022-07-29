@@ -53,7 +53,7 @@ Feature: endpoint /todos
   Scenario: Post create todo with valid json file
     Given Post create todo with invalid json file
     When Send request post create todo
-    Then Status code should be 500
+    Then Status code should be 400
 
   @smoke
   Scenario: Delete todo with valid id
@@ -78,10 +78,10 @@ Feature: endpoint /todos
   Scenario: Put update todo with invalid json file
     Given Put update todo with invalid json file and id "1"
     When Send request put update todo
-    Then Status code should be 500
+    Then Status code should be 400
 
   @smoke
   Scenario: Put update todo with invalid id
     Given Put update todo with valid json file and id "qweqwe"
     When Send request put update user
-    Then Status code should be 500
+    Then Status code should be 404
